@@ -85,7 +85,7 @@ Presents cannot give you **debug commands or abilities/enchantments**. Giving co
 
 Trying to give items that don't belong to the specific character result in a crash.
 
-**It is possible to get two presents of the same type.**
+**It is possible to get two presents of the same type as long as they are not the same type.**
 
 | Value | Description
 |--------|-------

@@ -4,6 +4,8 @@ PTX stands for *Pattern X* because it contains several code patterns.
 
 This file controls things such as events triggered by OLO files or the music to play.
 
+All files in this format start with a padding of 2 bytes followed by the size of the section to read.
+
 # PTN Type
 
 | Value | Name  
