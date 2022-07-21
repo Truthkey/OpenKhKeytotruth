@@ -10,47 +10,60 @@ Found inside map `.arc`s the details of much of the file format remain unkown, h
 | 0x4 | uint32 | Version number.
 | 0x8 | uint32 | Collision Data Count
 | 0xC | uint32 | Pointer to Collision Data
-| 0x10 | uint32[9] | A whole bunch of unknowns
-| 0x34 | uint16 | Vertex count
-| 0x36 | uint16 | Face count
-| 0x38 | uint32 | Vertex list offset
-| 0x3C | uint32 | Face list offset
-| 0x40 | uint32 | offset to unknown data
-| 0x44 | uint32 | offset to unknown data
-| 0x48 | uint32 | offset to unknown data
-| 0x4C | uint32 | offset to unknown data
 
-## Vertex List
 
-`fvec4 vertices[header.vertex_count]` found at `vertex list offset`.
-
-## Face List
-
-List of `header.face_count` of the following structure, found at `face list offset`.
+## Collision Data
 
 | Offset | Type | Description |
 |--------|------|-------------|
-| 0x0 | uint32 | Unknown.
-| 0x4 | uint32 | Unknown.
-| 0x8 | uint32 | Unknown.
-| 0xC | uint32 | Unknown.
-| 0x10 | int16 | Vertex index 1
-| 0x12 | int16 | Vertex index 2
-| 0x14 | int16 | Vertex index 3
-| 0x16 | int16 | Vertex index 4 *
-| 0x18 | int16 | Unknown
-| 0x1A | int16 | Unknown
-| 0x1C | int16 | Unknown
-| 0x1E | int16 | Unknown
-| 0x20 | uint32 | Unknown
-| 0x20 | uint32 | Unknown, possibly flags
-| 0x20 | uint32 | Unknown
-| 0x20 | uint32 | Unknown
+| 0x0  | float | fMinX
+| 0x4  | float | fMinY
+| 0x8  | float | fMinZ
+| 0xC  | float | fMaxX
+| 0x10 | float | fMaxY
+| 0x14 | float | fMaxZ
+| 0x18 | float | fCellSize
+| 0x1C | uint16 | usFlag
+| 0x1E | int16 | sDivX
+| 0x20 | int16 | sDivY
+| 0x22 | int16 | sDivZ
+| 0x24 | int16 | Vertex Count
+| 0x26 | int16 | Plane Count
+| 0x28 | FVECTOR | Vector Pointer
+| 0x2C | [PLANE_INFO](#plane-info) | Plane Info Pointer
+| 0x30 | ICOLOR | Color Pointer
+| 0x34 | int32 | BitArrayX
+| 0x38 | int32 | BitArrayY
+| 0x3C | int32 | BitArrayZ
 
-* Faces are assumed to be quads unless `Vertex Index 4` is `0xFF`/`-1`, in which case it's a triangle.
+### Plane Info
 
-## Unknown data
+| Offset | Type | Description |
+|--------|------|-------------|
+| 0x0  | FVECTOR | Vector Plane
+| 0x10  | uint16[4] | usVertexIndex
+| 0x18  | uint16[4] | usColorIndex
+| 0x20  | int32 | Info 0
+| 0x24 | [ATTR_DATA](#attr-data) | Attribute Data
+| 0x28 | int32[2] | padding
 
-The last 4 values in the header point to regions in the file after the Face List. Nothing is yet known about this data, except that it's size seems to be proportional to the complexity of the associated map. The current working theory is that it is some kind of tree structure for optimizing collision queries.
+### ATTR DATA
 
-Somewhere in the unknown data in the face structure should be flags that indicate if a face is a wall or floor, or if it's a trigger, as the level exit triggers seem to be present in the collision data. How the game decides what to do when you walk into them is currently unknown.
+| Bit | Length | Description |
+|--------|------|-------------|
+| 0 | 10 | dummy
+| 10 | 1 | uiHitGimmick
+| 11 | 1 | uiNoPut
+| 12 | 1 | uiSwim
+| 13 | 1 | uiHitPrize
+| 14 | 1 | uiIK
+| 15 | 1 | uiBarrier
+| 16 | 1 | uiLadder
+| 17 | 1 | uiDangle
+| 18 | 1 | uiHitCamera
+| 19 | 1 | uiHitAttack
+| 20 | 1 | uiHitFlyEnemy
+| 21 | 1 | uiHitEnemy
+| 22 | 1 | uiHitPlayer
+| 23 | 5 | uiMaterial
+| 28 | 4 | uiKind
