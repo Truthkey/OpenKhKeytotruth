@@ -102,9 +102,47 @@ Controls which spawns appear in the level and what flag needs to be risen for th
 | 0x2     | uint16 | String Count
 | 0x4     | string[String Count] | Name of OLO files to spawn. Given an olo name `{world}{area}-{ID}.olo`, only the `ID` section is written.
 
+## PTNCODE_RESET_MENUFLAG
+
+
+| Offset | Type  | Description
+|--------|-------|------------
+| 0x0     | uint16 | Code `Always 0x4`
+| 0x2     | uint16 | Count
+
+## PTNCODE_SET_MENUFLAG
+
+
+| Offset | Type  | Description
+|--------|-------|------------
+| 0x0     | uint16 | Code `Always 0x5`
+| 0x2     | uint16 | Count
+
+## PTNCODE_SET_PCHARA
+
+Changes the playable character in the level.
+
+| Offset | Type  | Description
+|--------|-------|------------
+| 0x0     | uint16 | Code `Always 0x6`
+| 0x2     | uint16 | Count
+
+### P_CHARA
+
+| Value | Name  
+|--------|------
+| 0x1    | P_CHARA_VE
+| 0x2    | P_CHARA_AQ
+| 0x3    | P_CHARA_TE
+| 0x10   | P_CHARA_NORMAL
+| 0x20   | P_CHARA_ARMOR
+| 0x30   | P_CHARA_RIDE
+| 0x40   | P_CHARA_RIDE_ARMOR
+| 0x50   | P_CHARA_HALF_ARMOR
+
 ## PTNCODE_BGM
 
-This section can be added to change the music applied to an event, usually inside BTL.
+This section can be added to change the music applied to an event or level, usually inside BTL or MAP.
 
 | Offset | Type  | Description
 |--------|-------|------------
@@ -113,9 +151,17 @@ This section can be added to change the music applied to an event, usually insid
 | 0x4     | uint16 | Song index to play 
 | 0x6     | uint16 | unk6 // Seems to be 0xFFFF most of the time
 
+## PTNCODE_SET_PARAGRAPH
+
+
+| Offset | Type  | Description
+|--------|-------|------------
+| 0x0     | uint16 | Code `Always 0x8`
+| 0x2     | uint16 | Count
+
 ## PTNCODE_MISSION
 
-This section can be added to change the music applied to an event, usually inside BTL.
+This section can be added to change the event loaded on spawn, usually inside BTL.
 
 | Offset | Type  | Description
 |--------|-------|------------
@@ -125,9 +171,14 @@ This section can be added to change the music applied to an event, usually insid
 
 ## PTNCODE_TRG_ACTION
 
+| Offset | Type  | Description
+|--------|-------|------------
+| 0x0     | uint16 | Code `Always 0xA`
+| 0x2     | uint16 | Count
+
 This one occupies 4 bytes per instance.
 
-### Room Teleport
+### Room Jump
 
 | Offset | Type  | Description
 |--------|-------|------------
@@ -147,19 +198,9 @@ This one occupies 4 bytes per instance.
 | 0xFFFFFFFE    | TYPE_DEFAULT_EXCEPT_WIPE
 | 0xFFFFFFFF    | TYPE_DEFAULT
 
----
+## PTNCODE_ENEMY_CHANGE
 
-# P_CHARA
-
-Unused enumeraion.
-
-| Value | Name  
-|--------|------
-| 0x1    | P_CHARA_VE
-| 0x2    | P_CHARA_AQ
-| 0x3    | P_CHARA_TE
-| 0x10   | P_CHARA_NORMAL
-| 0x20   | P_CHARA_ARMOR
-| 0x30   | P_CHARA_RIDE
-| 0x40   | P_CHARA_RIDE_ARMOR
-| 0x50   | P_CHARA_HALF_ARMOR
+| Offset | Type  | Description
+|--------|-------|------------
+| 0x0     | uint16 | Code `Always 0xB`
+| 0x2     | uint16 | Count
