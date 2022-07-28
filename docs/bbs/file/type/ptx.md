@@ -72,22 +72,22 @@ All files in this format start with a padding of 2 bytes followed by the size of
 | 0x8FB  | _GRP_DEFAULT_0_TAIL
 | 0x8FC  | GRP_PLAYER
 
-## Parse Pattern Argument
+## SCENE PRESET
 
-Use unknown.
+Code used to determine behavior of next section.
 
 | Value | Name  
 |--------|------
-| 0x2   | PARSE_SETFILE
-| 0x10  | PARSE_RESET_MENUFLAG
-| 0x20  | PARSE_SET_MENUFLAG
-| 0x40  | PARSE_P_CHARA
-| 0x80  | PARSE BGM
-| 0x100 | PARSE_PARAGRAPH
-| 0x200 | PARSE_MISSION
-| 0x400 | PARSE_TRG_ACTION
-| 0x800 | PARSE_ENEMY_CHANGE
-| 0xFF2 | PARSE_ALL
+| 0x1  | PTNCODE_SETFILE
+| 0x4  | PTNCODE_RESET_MENUFLAG
+| 0x5  | PTNCODE_SET_MENUFLAG
+| 0x6  | PTNCODE_P_CHARA
+| 0x7  | PTNCODE_BGM
+| 0x8  | PTNCODE_SET_PARAGRAPH
+| 0x9  | PTNCODE_MISSION
+| 0xA  | PTNCODE_TRG_ACTION
+| 0xB  | PTNCODE_ENEMY_CHANGE
+| 0xFFFFFFFF | PTNCODE_TERMINATOR
 
 ---
 # TYPE_EVENT
