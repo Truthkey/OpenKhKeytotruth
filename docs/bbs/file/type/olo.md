@@ -2,6 +2,8 @@
 
 This file controls what objects and how they're spawned in levels within [Kingdom Hearts Birth by Sleep](../../index.md).
 
+The name stands for Object Layout ?.
+
 # Header
 
 | Offset | Type  | Description

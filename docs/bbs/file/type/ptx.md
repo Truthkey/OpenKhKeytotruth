@@ -25,7 +25,7 @@ All files in this format start with a padding of 2 bytes followed by the size of
 | 0x6    | int16  | Value
 | 0x8    | uint32 | [Group](#Group)
 
-## CODE
+### CODE
 
 | Value | Name  
 |--------|------
@@ -40,7 +40,7 @@ All files in this format start with a padding of 2 bytes followed by the size of
 | 0xB   | PTNCODE_ENEMY_CHANGE
 | 0x0000FFFF   | PTNCODE_TERMINATOR
 
-## Group
+### Group
 
 | Value | Name  
 |--------|------
@@ -99,8 +99,8 @@ Controls which spawns appear in the level and what flag needs to be risen for th
 | Offset | Type  | Description
 |--------|-------|------------
 | 0x0     | uint16 | Code `Always 0x1`
-| 0x2     | uint16 | String Count
-| 0x4     | string[String Count] | Name of OLO files to spawn. Given an olo name `{world}{area}-{ID}.olo`, only the `ID` section is written.
+| 0x2     | uint16 | File Count To Load
+| 0x4     | string[File Count] | Name of OLO files to spawn. Given an olo name `{world}{area}-{ID}.olo`, only the `ID` section is written.
 
 ## PTNCODE_RESET_MENUFLAG
 
@@ -119,6 +119,8 @@ Controls which spawns appear in the level and what flag needs to be risen for th
 | 0x2     | uint16 | Count
 
 ## PTNCODE_SET_PCHARA
+
+`NON IMPLEMENTED FEATURE`
 
 Changes the playable character in the level.
 
@@ -144,12 +146,14 @@ Changes the playable character in the level.
 
 This section can be added to change the music applied to an event or level, usually inside BTL or MAP.
 
+If Field or Battle songs are prefixed with `0x400`, the game will wait for the music to start playing to transition.
+
 | Offset | Type  | Description
 |--------|-------|------------
 | 0x0     | uint16 | Code `Always 0x7`
 | 0x2     | uint16 | Value
-| 0x4     | uint16 | Song index to play 
-| 0x6     | uint16 | unk6 // Seems to be 0xFFFF most of the time
+| 0x4     | uint16 | Field Song
+| 0x6     | uint16 | Batle Song (`Most of the time seems to be 0xFFFF`)
 
 ## PTNCODE_SET_PARAGRAPH
 
@@ -187,7 +191,7 @@ This one occupies 4 bytes per instance.
 | 0x4    | uint16 | Entrance
 | 0x6    | uint16 | Unknown
 
-# Jump Type
+### Jump Type
 
 | Value | Name  
 |--------|------
